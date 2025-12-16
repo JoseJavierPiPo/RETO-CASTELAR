@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Acertijo criptográfico</title>
+  <style>
+    :root{font-family:Inter,system-ui,Segoe UI,Roboto,Arial;margin:0}
+    body{min-height:100vh;display:flex;align-items:center;justify-content:center;background:#f5f7fb}
+    .card{width:100%;max-width:460px;background:white;padding:28px;border-radius:12px;box-shadow:0 6px 24px rgba(20,30,60,.08)}
+    h1{font-size:20px;margin:0 0 10px}
+    p{margin:0 0 18px;color:#555}
+    .cipher{margin:12px 0;padding:10px 12px;background:#0f172a;color:#e2e8f0;border-radius:8px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;letter-spacing:.5px}
+    .row{display:flex;gap:10px}
+    input[type=password]{flex:1;padding:10px 12px;border:1px solid #d7dbe6;border-radius:8px;font-size:14px}
+    button{padding:10px 14px;border-radius:8px;border:0;background:#2563eb;color:white;font-weight:600;cursor:pointer}
+    .msg{margin-top:12px;height:20px;color:#b91c1c}
+    .hint{margin-top:10px;color:#6b7280;font-size:13px}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Reto 1 </h1>
+    <p>Descifra el mensaje para obtener la contraseña y acceder a la siguiente página.</p>
+    <div class="cipher" aria-label="Mensaje cifrado">edqghud2025</div>
+    <div class="row">   
+      <input id="pw" type="password" placeholder="Contraseña">
+      <button id="btn">Entrar</button>
+    </div>
+    <div class="msg" id="msg"></div>
+    <div class="hint">Pista: Un saludo famoso que un dictador romano recibía de sus soldados antes de entrar al Senado. </div>
+  </main>
+  <script>
+    const PASSWORD = 'bandera2025';
+    const pw = document.getElementById('pw');
+    const btn = document.getElementById('btn');
+    const msg = document.getElementById('msg');
+    function go(){
+      const val = pw.value.trim();
+      if(!val){ msg.style.color='#b91c1c'; msg.textContent='Introduce una contraseña.'; return; }
+      if(val===PASSWORD){
+        msg.style.color='#16a34a';
+        msg.textContent='Contraseña correcta. Redirigiendo...';
+        setTimeout(()=>{ window.location.href='pagina_secundaria.html'; },400);
+      }else{
+        msg.style.color='#b91c1c';
+        msg.textContent='Contraseña incorrecta.';
+      }
+    }
+    btn.addEventListener('click',go);
+    pw.addEventListener('keydown',e=>{ if(e.key==='Enter') go(); });
+  </script>
+</body>
+</html>

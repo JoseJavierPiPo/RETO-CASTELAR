@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Segundo acertijo</title>
+  <style>
+    :root{font-family:Inter,system-ui,Segoe UI,Roboto,Arial;margin:0}
+    body{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0f172a,#1f2937);color:#e5e7eb}
+    .card{width:100%;max-width:520px;background:rgba(17,24,39,.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.08);padding:32px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+    h1{font-size:22px;margin:0 0 12px;color:#93c5fd}
+    p{margin:0 0 20px;color:#cbd5e1}
+    .cipher{margin:12px 0;padding:12px 14px;background:#0b1220;color:#e2e8f0;border-radius:10px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;letter-spacing:.5px}
+    .row{display:flex;gap:10px}
+    input[type=password]{flex:1;padding:12px 14px;border:1px solid #334155;background:#0b1220;color:#e5e7eb;border-radius:10px;font-size:14px}
+    button{padding:12px 16px;border-radius:10px;border:0;background:#22c55e;color:#0b1020;font-weight:700;cursor:pointer}
+    .msg{margin-top:12px;height:20px;color:#fca5a5}
+    .hint{margin-top:10px;color:#93c5fd;font-size:13px}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Segundo acertijo</h1>
+    <p>Descifra el mensaje y escribe la contraseña para continuar.</p>
+    <div class="cipher" aria-label="Mensaje cifrado">YmFuZGVyYV9maW5hbA==</div>
+    <div class="row">
+      <input id="pw2" type="password" placeholder="Contraseña">
+      <button id="btn2">Continuar</button>
+    </div>
+    <div class="msg" id="msg2"></div>
+    <div class="hint">Pista: formato Base64.</div>
+  </main>
+  <script>
+    const PASSWORD2 = 'bandera_final';
+    const pw2 = document.getElementById('pw2');
+    const btn2 = document.getElementById('btn2');
+    const msg2 = document.getElementById('msg2');
+    function go2(){
+      const val = pw2.value.trim();
+      if(!val){ msg2.textContent='Introduce una contraseña.'; return; }
+      if(val===PASSWORD2){
+        msg2.style.color='#86efac';
+        msg2.textContent='Correcta. Redirigiendo...';
+        setTimeout(()=>{ window.location.href='pagina_contrase%C3%B1a.html'; },400);
+      }else{
+        msg2.style.color='#fca5a5';
+        msg2.textContent='Contraseña incorrecta.';
+      }
+    }
+    btn2.addEventListener('click',go2);
+    pw2.addEventListener('keydown',e=>{ if(e.key==='Enter') go2(); });
+  </script>
+</body>
+</html>
